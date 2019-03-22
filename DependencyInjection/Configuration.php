@@ -77,7 +77,7 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->arrayNode('accepted_format')
                             ->defaultValue(['image/jpg', 'image/jpeg', 'image/png', 'image/gif', 'image/tiff', 'application/pdf'])
-                            ->prototype('scalar')->end()
+                            ->prototype('scalar')->cannotBeEmpty()->end()
                             ->end()
                         ->booleanNode('preview_file')
                             ->defaultTrue()
