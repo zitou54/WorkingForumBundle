@@ -47,8 +47,10 @@ class Configuration implements ConfigurationInterface
                     ->cannotBeEmpty()
                     ->validate()
                         ->ifTrue(function ($date) {
-                            return (bool)strtotime($date);
+                            return !(bool)strtotime($date);
                         })
+                        ->thenInvalid('WF Forum : the "date_format" parameters must be a valid date format')
+                    ->end()
                 ->end()
                 ->booleanNode('allow_moderator_delete_thread')
                     ->defaultFalse()
