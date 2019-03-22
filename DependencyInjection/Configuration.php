@@ -45,6 +45,10 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('date_format')
                     ->defaultValue('Y/m/d H:i:s')
                     ->cannotBeEmpty()
+                    ->validate()
+                        ->ifTrue(function ($date) {
+                            return (bool)strtotime($date);
+                        })
                 ->end()
                 ->booleanNode('allow_moderator_delete_thread')
                     ->defaultFalse()
